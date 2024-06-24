@@ -53,7 +53,7 @@ export default function HoverPlayer() {
           style={{
             position: "absolute",
             top: `${hoveredElement.top}px`,
-            left: `${hoveredElement.left - 20}px`,
+            left: `${hoveredElement.left}px`,
           }}
         >
           <PlayButton onClick={playText} />
