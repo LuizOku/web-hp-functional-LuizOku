@@ -1,5 +1,7 @@
-import { useHoveredParagraphCoordinate } from "./hook";
+import { useEffect, useState } from "react";
+import { HoveredElementInfo, useHoveredParagraphCoordinate } from "./hook";
 import { getTopLevelReadableElementsOnPage } from "./parser";
+import { speechify } from "./play";
 
 // This is a simple play button SVG that you can use in your hover player
 const PlayButton = (props: React.SVGProps<SVGSVGElement>) => (
@@ -33,7 +35,30 @@ const PlayButton = (props: React.SVGProps<SVGSVGElement>) => (
 export default function HoverPlayer() {
   const elements = getTopLevelReadableElementsOnPage();
   const hoveredElementInfo = useHoveredParagraphCoordinate(elements);
+  const [hoveredElement, setHoveredElement] =
+    useState<HoveredElementInfo | null>(null);
 
-  console.log(hoveredElementInfo);
-  return <></>;
+  useEffect(() => {
+    setHoveredElement(hoveredElementInfo);
+  }, [hoveredElementInfo]);
+
+  const playText = () => {
+    speechify(hoveredElement?.element!);
+  };
+
+  return (
+    <>
+      {hoveredElement && (
+        <div
+          style={{
+            position: "absolute",
+            top: `${hoveredElement.top}px`,
+            left: `${hoveredElement.left - 20}px`,
+          }}
+        >
+          <PlayButton onClick={playText} />
+        </div>
+      )}
+    </>
+  );
 }
