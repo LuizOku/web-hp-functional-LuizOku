@@ -1,3 +1,4 @@
+import { useHoveredParagraphCoordinate } from "./hook";
 import { getTopLevelReadableElementsOnPage } from "./parser";
 
 // This is a simple play button SVG that you can use in your hover player
@@ -31,6 +32,8 @@ const PlayButton = (props: React.SVGProps<SVGSVGElement>) => (
  */
 export default function HoverPlayer() {
   const elements = getTopLevelReadableElementsOnPage();
-  console.log(elements);
+  const hoveredElementInfo = useHoveredParagraphCoordinate(elements);
+
+  console.log(hoveredElementInfo);
   return <></>;
 }

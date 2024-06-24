@@ -71,7 +71,6 @@ export function getTopLevelReadableElementsOnPage(): Element[] {
       element.textContent
     ) {
       topLevelReadableElements.push(element);
-      console.log(element.tagName, element.textContent);
     }
   }
   const myElement = document.getElementsByTagName("body");
