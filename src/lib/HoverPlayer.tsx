@@ -30,6 +30,7 @@ const PlayButton = (props: React.SVGProps<SVGSVGElement>) => (
  * This component should make use of the useHoveredParagraphCoordinate hook to get information about the hovered paragraph
  */
 export default function HoverPlayer() {
-  getTopLevelReadableElementsOnPage();
+  const elements = getTopLevelReadableElementsOnPage();
+  console.log(elements);
   return <></>;
 }
